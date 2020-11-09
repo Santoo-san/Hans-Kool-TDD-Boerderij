@@ -9,11 +9,11 @@ const functions = {
     user["lastname"] = "Kool";
     return user;
   },
-  fetchUser: () =>
-    axios
-      .get("https://jsonplaceholder.typicode.com/users/1")
-      .then((res) => res.data)
-      .catch((err) => `error ${err}`),
+  //   fetchUser: () =>
+  //     axios
+  //       .get("https://jsonplaceholder.typicode.com/users/1")
+  //       .then((res) => res.data)
+  //       .catch((err) => `error ${err}`),
 };
 
 module.exports = functions;
