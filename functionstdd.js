@@ -7,12 +7,8 @@ const addOne = (numbers) => {
 
 const getWordLengths = (words) => words.map((word) => word.length);
 
-const checkValue = (a) => {
-  return a == "needle";
-};
-
-const findNeedle = (a) => {
-  return a.findIndex(checkValue);
+const findNeedle = (words, searchWord) => {
+  return words.indexOf(searchWord);
 };
 
 module.exports = { addOne, getWordLengths, findNeedle };
