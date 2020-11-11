@@ -16,10 +16,21 @@ const environment_factors = {
 
 // const isNotNull = (str) => str !== null;
 
-const get_yield_for_plant = () => 30;
+const yieldMultiplier = 1;
 
-const get_yield_for_crop = () => 30;
-const get_total_yield = () => 23;
+const get_yield_for_plant = (crop) => {
+  return crop.yield * yieldMultiplier;
+};
+
+const get_yield_for_crop = (input) => {
+  return input.crop.yield * input.num_crops;
+};
+const get_total_yield = ({ crops }) => {
+  const cropTotal = crops.map((item) => {
+    return item.crop.yield * item.num_crops;
+  });
+  return cropTotal.reduce((a, b) => a + b, 0);
+};
 
 const get_profit_for_crop = () => 100;
 
