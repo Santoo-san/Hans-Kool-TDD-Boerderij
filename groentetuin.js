@@ -73,9 +73,9 @@ const get_revenue_for_crop_environment = (input, environment_factors) => {
 };
 
 const get_profit_for_crop_environment = (input, environment_factors) => {
-  return (
+  return Math.round(
     get_revenue_for_crop_environment(input, environment_factors) -
-    get_costs_for_crop_environment(input, environment_factors)
+      get_costs_for_crop_environment(input, environment_factors)
   );
 };
 
