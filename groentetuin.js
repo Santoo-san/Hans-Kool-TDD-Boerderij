@@ -79,6 +79,24 @@ const get_profit_for_crop_environment = (input, environment_factors) => {
   );
 };
 
+const get_total_profit_environment = ({ crops }, environment_factors) => {
+  const cropTotal = crops.map((item) => {
+    return (
+      get_revenue_for_crop_environment(item, environment_factors) -
+      get_costs_for_crop_environment(item, environment_factors)
+    );
+  });
+  return Math.round(cropTotal.reduce((a, b) => a + b, 0));
+};
+
+// // reservecode
+// const get_total_profit_environment = ({ crops }, environment_factors) => {
+//     const cropTotal = crops.map((item) => {
+//       return get_revenue_for_crop(item) - get_costs_for_crop(item);
+//     });
+//     return cropTotal.reduce((a, b) => a + b, 0);
+//   };
+
 module.exports = {
   get_costs_for_crop,
   get_revenue_for_crop,
@@ -90,4 +108,5 @@ module.exports = {
   get_yield_for_crop_environment,
   get_total_yield,
   get_total_profit,
+  get_total_profit_environment,
 };

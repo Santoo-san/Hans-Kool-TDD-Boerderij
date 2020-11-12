@@ -9,6 +9,7 @@ const {
   get_yield_for_crop_environment,
   get_total_yield,
   get_total_profit,
+  get_total_profit_environment,
 } = require("./groentetuin");
 
 // general data
@@ -250,13 +251,13 @@ describe("get_total_profit, with environment factors", () => {
   ];
 
   test("Get total profit, with environment factors 'no influence'", () => {
-    expect(get_profit_for_crop_environment(input, environment_factors3)).toBe(
+    expect(get_total_profit_environment({ crops }, environment_factors3)).toBe(
       530
     );
   });
   test("Get total profit, with environment factors", () => {
-    expect(get_profit_for_crop_environment(input, environment_factors2)).toBe(
-      57.6
-    );
+    expect(
+      get_total_profit_environment({ crops }, environment_factors2)
+    ).toEqual(148);
   });
 });
