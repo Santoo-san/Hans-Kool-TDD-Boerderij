@@ -2,6 +2,7 @@ const {
   get_costs_for_crop,
   get_revenue_for_crop,
   get_profit_for_crop,
+  get_profit_for_crop_environment,
   get_yield_for_plant,
   get_adjusted_yield_for_plant,
   get_yield_for_crop,
@@ -10,7 +11,7 @@ const {
   get_total_profit,
 } = require("./groentetuin");
 
-//general data
+// general data
 const corn = {
   name: "corn",
   yield: 30,
@@ -51,32 +52,32 @@ const input = {
   num_crops: 10,
 };
 
-//Task 0, given tests
+// Task 0, given tests
 describe("get_yield_for_plant", () => {
   test("Get yield for plant with no environment factors", () => {
     expect(get_yield_for_plant(corn)).toBe(30);
   });
 
-  //Task 5
+  // Task 5
   test("Get yield for plant with environment factor sun", () => {
     expect(get_adjusted_yield_for_plant(corn, environment_factors)).toBe(15);
   });
-  //Task 6
+  // Task 6
   test("Get yield for plant with environment factor sun and wind", () => {
     expect(get_adjusted_yield_for_plant(corn, environment_factors2)).toBe(6);
   });
-  //Task 6
+  // Task 6
   test("Get yield for plant with environment factor sun and wind 'no influence'", () => {
     expect(get_adjusted_yield_for_plant(corn, environment_factors3)).toBe(30);
   });
-  //Task 7
+  // Task 7
   test("Get yield for plant with environment factor sun and wind ignore soiltype", () => {
     expect(get_adjusted_yield_for_plant(corn, environment_factors2)).toBe(6);
   });
 });
 
 describe("get_yield_for_crop", () => {
-  //Task 0, given tests
+  // Task 0, given tests
   test("Get yield for crop, simple", () => {
     const corn = {
       name: "corn",
@@ -88,7 +89,7 @@ describe("get_yield_for_crop", () => {
     };
     expect(get_yield_for_crop(input)).toBe(30);
   });
-  //   Task 8
+  // Task 8
   test("Get yield for crop, with environment factors", () => {
     expect(get_yield_for_crop_environment(input, environment_factors3)).toBe(
       300
@@ -101,7 +102,7 @@ describe("get_yield_for_crop", () => {
   });
 });
 
-//Task 0, given tests
+// Task 0, given tests
 describe("get_total_yield", () => {
   test("Calculate total yield with multiple crops", () => {
     const corn = {
@@ -129,7 +130,7 @@ describe("get_total_yield", () => {
   });
 });
 
-//Task 1
+// Task 1
 describe("get_cost_for_crop", () => {
   test("Get cost for crop, simple", () => {
     const corn = {
@@ -199,5 +200,19 @@ describe("get_total_profit", () => {
       { crop: pumpkin, num_crops: 5 },
     ];
     expect(get_total_profit({ crops })).toBe(65);
+  });
+});
+
+// Task 9
+describe("get_profit_for_crop, with environment factors", () => {
+  test("Get profit for crop, with environment factors 'no influence'", () => {
+    expect(get_profit_for_crop_environment(input, environment_factors3)).toBe(
+      3000
+    );
+  });
+  test("Get profit for crop, with environment factors", () => {
+    expect(get_profit_for_crop_environment(input, environment_factors2)).toBe(
+      600
+    );
   });
 });
