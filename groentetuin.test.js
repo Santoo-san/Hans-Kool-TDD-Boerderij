@@ -5,6 +5,7 @@ const {
   get_yield_for_plant,
   get_adjusted_yield_for_plant,
   get_yield_for_crop,
+  get_yield_for_crop_environment,
   get_total_yield,
   get_total_profit,
 } = require("./groentetuin");
@@ -110,7 +111,9 @@ describe("get_yield_for_crop", () => {
       crop: corn,
       num_crops: 10,
     };
-    expect(get_yield_for_crop(input, environment_factors3)).toBe(300);
+    expect(get_yield_for_crop_environment(input, environment_factors3)).toBe(
+      300
+    );
   });
   test("Get yield for crop, with environment factors", () => {
     const corn = {
@@ -144,7 +147,9 @@ describe("get_yield_for_crop", () => {
       crop: corn,
       num_crops: 10,
     };
-    expect(get_yield_for_crop(input, environment_factors2)).toBe(60);
+    expect(get_yield_for_crop_environment(input, environment_factors2)).toBe(
+      60
+    );
   });
 });
 
