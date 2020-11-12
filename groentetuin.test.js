@@ -3,6 +3,7 @@ const {
   get_revenue_for_crop,
   get_profit_for_crop,
   get_yield_for_plant,
+  get_adjusted_yield_for_plant,
   get_yield_for_crop,
   get_total_yield,
   get_total_profit,
@@ -14,6 +15,11 @@ describe("get_yield_for_plant", () => {
     yield: 30,
     factors: {
       sun: {
+        low: -50,
+        medium: 0,
+        high: 50,
+      },
+      wind: {
         low: -50,
         medium: 0,
         high: 50,
@@ -30,7 +36,7 @@ describe("get_yield_for_plant", () => {
   });
 
   test("Get yield for plant with environment factors", () => {
-    expect(get_yield_for_plant(corn, environment_factors)).toBe(15);
+    expect(get_adjusted_yield_for_plant(corn, environment_factors)).toBe(15);
   });
 });
 

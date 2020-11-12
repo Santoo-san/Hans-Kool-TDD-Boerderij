@@ -1,7 +1,27 @@
-const yieldMultiplier = 0.5;
+const yieldMultiplier = (crop, environment_factors) => {
+  const sunPercentage = crop.factors.sun[environment_factors.sun] || 0;
+  const windPercentage = crop.factors.wind[environment_factors.wind] || 0;
+  const percentages = [sunPercentage, windPercentage];
+  multiplyFactors = percentages.map((percentage) => percentage / 100 + 1);
+  return multiplyFactors.reduce(
+    (acc, curr) => acc * curr,
+    get_yield_for_plant(crop)
+  );
+};
 
-const get_yield_for_plant = (crop, environment_factors) => {
-  return crop.yield * yieldMultiplier;
+const get_adjusted_yield_for_plant = (crop, environment) => {
+  const sunPercentage = crop.factors.sun[environment.sun] || 0;
+  const windPercentage = crop.factors.wind[environment.wind] || 0;
+  const percentages = [sunPercentage, windPercentage];
+  multiplyFactors = percentages.map((percentage) => percentage / 100 + 1);
+  return multiplyFactors.reduce(
+    (acc, curr) => acc * curr,
+    get_yield_for_plant(crop)
+  );
+};
+
+const get_yield_for_plant = (crop) => {
+  return crop.yield;
 };
 
 const get_yield_for_crop = (input) => {
@@ -37,6 +57,7 @@ module.exports = {
   get_revenue_for_crop,
   get_profit_for_crop,
   get_yield_for_plant,
+  get_adjusted_yield_for_plant,
   get_yield_for_crop,
   get_total_yield,
   get_total_profit,
