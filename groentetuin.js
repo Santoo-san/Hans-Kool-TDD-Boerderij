@@ -12,7 +12,8 @@ const yieldMultiplier = (crop, environment_factors) => {
 const get_adjusted_yield_for_plant = (crop, environment) => {
   const sunPercentage = crop.factors.sun[environment.sun] || 0;
   const windPercentage = crop.factors.wind[environment.wind] || 0;
-  const percentages = [sunPercentage, windPercentage];
+  const soilPercentage = crop.factors.soiltype[environment.soiltype] || 0;
+  const percentages = [sunPercentage, windPercentage, soilPercentage];
   multiplyFactors = percentages.map((percentage) => percentage / 100 + 1);
   return multiplyFactors.reduce(
     (acc, curr) => acc * curr,
