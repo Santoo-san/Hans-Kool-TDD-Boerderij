@@ -35,6 +35,29 @@ const corn = {
     },
   },
 };
+const pumpkin = {
+  name: "pumpkin",
+  yield: 4,
+  cost: 3,
+  sales_price: 4,
+  factors: {
+    sun: {
+      low: -10,
+      medium: 0,
+      high: 10,
+    },
+    wind: {
+      low: 0,
+      medium: -10,
+      high: -20,
+    },
+    soiltype: {
+      clay: 0,
+      sand: -40,
+      compost: 40,
+    },
+  },
+};
 
 const environment_factors = {
   sun: "low",
@@ -215,6 +238,25 @@ describe("get_profit_for_crop, with environment factors", () => {
   test("Get profit for crop, with environment factors", () => {
     expect(get_profit_for_crop_environment(input, environment_factors2)).toBe(
       90
+    );
+  });
+});
+
+// Task 10
+describe("get_total_profit, with environment factors", () => {
+  const crops = [
+    { crop: corn, num_crops: 10 },
+    { crop: pumpkin, num_crops: 20 },
+  ];
+
+  test("Get total profit, with environment factors 'no influence'", () => {
+    expect(get_profit_for_crop_environment(input, environment_factors3)).toBe(
+      530
+    );
+  });
+  test("Get total profit, with environment factors", () => {
+    expect(get_profit_for_crop_environment(input, environment_factors2)).toBe(
+      57.6
     );
   });
 });
