@@ -24,6 +24,11 @@ describe("get_yield_for_plant", () => {
         medium: -30,
         high: -60,
       },
+      soiltype: {
+        clay: 0,
+        sand: -40,
+        compost: 40,
+      },
     },
   };
 
@@ -54,6 +59,10 @@ describe("get_yield_for_plant", () => {
 
   test("Get yield for plant with environment factor sun and wind 'no influence'", () => {
     expect(get_adjusted_yield_for_plant(corn, environment_factors3)).toBe(30);
+  });
+
+  test("Get yield for plant with environment factor sun and wind ignore soiltype", () => {
+    expect(get_adjusted_yield_for_plant(corn, environment_factors2)).toBe(6);
   });
 });
 
