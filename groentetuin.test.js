@@ -78,6 +78,74 @@ describe("get_yield_for_crop", () => {
     };
     expect(get_yield_for_crop(input)).toBe(30);
   });
+  test("Get yield for crop, with environment factors", () => {
+    const corn = {
+      name: "corn",
+      yield: 30,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+        soiltype: {
+          clay: 0,
+          sand: -40,
+          compost: 40,
+        },
+      },
+    };
+
+    const environment_factors3 = {
+      sun: "medium",
+      wind: "low",
+    };
+
+    const input = {
+      crop: corn,
+      num_crops: 10,
+    };
+    expect(get_yield_for_crop(input, environment_factors3)).toBe(300);
+  });
+  test("Get yield for crop, with environment factors", () => {
+    const corn = {
+      name: "corn",
+      yield: 30,
+      factors: {
+        sun: {
+          low: -50,
+          medium: 0,
+          high: 50,
+        },
+        wind: {
+          low: 0,
+          medium: -30,
+          high: -60,
+        },
+        soiltype: {
+          clay: 0,
+          sand: -40,
+          compost: 40,
+        },
+      },
+    };
+
+    const environment_factors2 = {
+      sun: "low",
+      wind: "high",
+    };
+
+    const input = {
+      crop: corn,
+      num_crops: 10,
+    };
+    expect(get_yield_for_crop(input, environment_factors2)).toBe(60);
+  });
 });
 
 describe("get_total_yield", () => {
