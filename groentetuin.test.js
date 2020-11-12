@@ -15,6 +15,8 @@ const {
 const corn = {
   name: "corn",
   yield: 30,
+  cost: 0.5,
+  sales_price: 2,
   factors: {
     sun: {
       low: -50,
@@ -207,12 +209,12 @@ describe("get_total_profit", () => {
 describe("get_profit_for_crop, with environment factors", () => {
   test("Get profit for crop, with environment factors 'no influence'", () => {
     expect(get_profit_for_crop_environment(input, environment_factors3)).toBe(
-      3000
+      450
     );
   });
   test("Get profit for crop, with environment factors", () => {
     expect(get_profit_for_crop_environment(input, environment_factors2)).toBe(
-      600
+      90
     );
   });
 });

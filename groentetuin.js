@@ -60,8 +60,23 @@ const get_costs_for_crop = (input) => {
 const get_revenue_for_crop = (input) => {
   return get_yield_for_crop(input) * input.crop.sales_price;
 };
-const get_profit_for_crop_environment = (input, environment_factors2) => {
-  return get_revenue_for_crop(input) - get_costs_for_crop(input);
+const get_costs_for_crop_environment = (input, environment_factors) => {
+  return (
+    get_yield_for_crop_environment(input, environment_factors) * input.crop.cost
+  );
+};
+const get_revenue_for_crop_environment = (input, environment_factors) => {
+  return (
+    get_yield_for_crop_environment(input, environment_factors) *
+    input.crop.sales_price
+  );
+};
+
+const get_profit_for_crop_environment = (input, environment_factors) => {
+  return (
+    get_revenue_for_crop_environment(input, environment_factors) -
+    get_costs_for_crop_environment(input, environment_factors)
+  );
 };
 
 module.exports = {
